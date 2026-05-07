@@ -1,0 +1,67 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "api": { "name": "shared_commondataserviceforapps" },
+        "connection": { "connectionReferenceLogicalName": "aura_sharedcommondataserviceforapps_invoice" },
+        "source": "Embedded"
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "InvoiceNumber": { "type": "string" },
+                "VendorName": { "type": "string" },
+                "Amount": { "type": "number" },
+                "DateIssued": { "type": "string" }
+              },
+              "required": ["InvoiceNumber", "Amount", "VendorName"]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Create_Invoice_Record": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "CreateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "aura_invoices",
+              "item/aura_name": "@triggerBody()?['InvoiceNumber']",
+              "item/aura_vendorname": "@triggerBody()?['VendorName']",
+              "item/aura_totalamount": "@triggerBody()?['Amount']",
+              "item/aura_status": 1
+            }
+          }
+        },
+        "Response_to_Sender": {
+          "runAfter": {
+            "Create_Invoice_Record": ["Succeeded"]
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 201,
+            "body": {
+              "message": "Invoice successfully received and stored in Dataverse.",
+              "invoiceId": "@outputs('Create_Invoice_Record')?['body/aura_invoiceid']"
+            }
+          }
+        }
+      }
+    }
+  }
+}
