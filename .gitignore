@@ -1,0 +1,18 @@
+# Node dependencies
+node_modules/
+npm-debug.log
+
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Power Platform Solutions (Ignore actual solutions, keep the folder for the template)
+Solutions/*
+!Solutions/.gitkeep
+
+# Environment variables / Auth (Never commit secrets)
+.env
+.env.local
+
+# VS Code (Ignore personal settings, keep extensions/workspace)
+.vscode/.user/

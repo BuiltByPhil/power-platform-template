@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"powershell.executionPolicy": "RemoteSigned",
+		"powershell.integratedConsole.showOnStartup": false,
+		"powerPlatform.cli.path": "/Users/auraaisystems/pac-new/tools/net10.0/any/pac.dll",
+		"yaml.schemas": {
+			"https://raw.githubusercontent.com/microsoft/PowerPlatform-Dataverse-Model/main/schema/solution.schema.json": "solution.xml"
+		}
+	}
+}
