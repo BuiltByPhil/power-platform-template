@@ -1,0 +1,15 @@
+{
+  "name": "seek-connector-api",
+  "version": "1.0.0",
+  "description": "REST API backend for the Seek Power Platform Custom Connector",
+  "main": "api/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "node --watch api/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "playwright": "^1.49.0"
+  }
+}

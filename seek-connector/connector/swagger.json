@@ -1,0 +1,190 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Seek Job Search",
+    "description": "Search Seek.com.au for job listings and retrieve full job descriptions. Use this connector in Power Automate flows or Power Apps to find and evaluate job opportunities.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "BuiltByPhil"
+    }
+  },
+  "host": "your-seek-api.azurecontainerapps.io",
+  "basePath": "/",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "x-api-key"
+    }
+  },
+  "security": [{ "apiKey": [] }],
+  "paths": {
+    "/jobs/search": {
+      "get": {
+        "summary": "Search Jobs",
+        "description": "Search Seek.com.au for job listings matching a keyword and location. Returns titles, companies, salaries, and apply links.",
+        "operationId": "SearchJobs",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Job title or keywords to search for. Example: Customer Success Manager",
+            "x-ms-summary": "Search Query"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Seek location slug. Examples: All-Melbourne-VIC, All-Sydney-NSW, All-Brisbane-QLD, All-Perth-WA, remote",
+            "x-ms-summary": "Location",
+            "default": "All-Melbourne-VIC"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "How many days back to include. Options: 7, 14, 30, 90. Default: 30",
+            "x-ms-summary": "Days Back",
+            "default": 30,
+            "enum": [7, 14, 30, 90]
+          },
+          {
+            "name": "maxResults",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Maximum number of listings to return. Default: 15, Max: 50",
+            "x-ms-summary": "Max Results",
+            "default": 15
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job listings matching the search criteria",
+            "schema": {
+              "$ref": "#/definitions/SearchResponse"
+            }
+          },
+          "400": {
+            "description": "Missing required parameters",
+            "schema": { "$ref": "#/definitions/Error" }
+          },
+          "500": {
+            "description": "Search failed",
+            "schema": { "$ref": "#/definitions/Error" }
+          }
+        }
+      }
+    },
+    "/jobs/{jobId}": {
+      "get": {
+        "summary": "Get Job Details",
+        "description": "Retrieve the full job description, requirements, and apply link for a specific Seek listing.",
+        "operationId": "GetJobDetails",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The numeric Seek job ID from search results",
+            "x-ms-summary": "Job ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full job details",
+            "schema": {
+              "$ref": "#/definitions/JobDetail"
+            }
+          },
+          "400": {
+            "description": "Invalid job ID",
+            "schema": { "$ref": "#/definitions/Error" }
+          },
+          "500": {
+            "description": "Failed to fetch job details",
+            "schema": { "$ref": "#/definitions/Error" }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Returns OK if the API is running.",
+        "operationId": "HealthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "API is healthy",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": { "type": "string", "example": "ok" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "JobListing": {
+      "type": "object",
+      "properties": {
+        "jobId":      { "type": "string",  "description": "Seek numeric job ID", "x-ms-summary": "Job ID" },
+        "title":      { "type": "string",  "description": "Job title",           "x-ms-summary": "Title" },
+        "company":    { "type": "string",  "description": "Employer name",       "x-ms-summary": "Company" },
+        "location":   { "type": "string",  "description": "Job location",        "x-ms-summary": "Location" },
+        "salary":     { "type": "string",  "description": "Advertised salary (may be null)", "x-ms-summary": "Salary" },
+        "snippet":    { "type": "string",  "description": "Short description bullet points", "x-ms-summary": "Snippet" },
+        "url":        { "type": "string",  "description": "Seek listing URL",    "x-ms-summary": "URL" },
+        "postedDate": { "type": "string",  "description": "Date posted",         "x-ms-summary": "Posted Date" }
+      }
+    },
+    "SearchResponse": {
+      "type": "object",
+      "properties": {
+        "query":        { "type": "string",  "x-ms-summary": "Query" },
+        "location":     { "type": "string",  "x-ms-summary": "Location" },
+        "dateRange":    { "type": "integer", "x-ms-summary": "Date Range" },
+        "totalResults": { "type": "integer", "x-ms-summary": "Total Results" },
+        "searchUrl":    { "type": "string",  "x-ms-summary": "Search URL" },
+        "jobs": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/JobListing" },
+          "x-ms-summary": "Jobs"
+        }
+      }
+    },
+    "JobDetail": {
+      "type": "object",
+      "properties": {
+        "jobId":           { "type": "string", "x-ms-summary": "Job ID" },
+        "title":           { "type": "string", "x-ms-summary": "Title" },
+        "company":         { "type": "string", "x-ms-summary": "Company" },
+        "location":        { "type": "string", "x-ms-summary": "Location" },
+        "salary":          { "type": "string", "x-ms-summary": "Salary" },
+        "postedDate":      { "type": "string", "x-ms-summary": "Posted Date" },
+        "fullDescription": { "type": "string", "x-ms-summary": "Full Description" },
+        "url":             { "type": "string", "x-ms-summary": "URL" },
+        "applyUrl":        { "type": "string", "x-ms-summary": "Apply URL" }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "error":  { "type": "string" },
+        "detail": { "type": "string" }
+      }
+    }
+  }
+}

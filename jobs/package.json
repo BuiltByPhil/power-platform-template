@@ -1,0 +1,17 @@
+{
+  "name": "job-search-automation",
+  "version": "1.0.0",
+  "description": "Seek.com.au job search automation with Claude-powered resume tailoring",
+  "main": "run.js",
+  "type": "commonjs",
+  "scripts": {
+    "search": "node run.js",
+    "search:resume": "node run.js --resume"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "mammoth": "^1.8.0",
+    "pdf-parse": "^1.1.1",
+    "playwright": "^1.49.0"
+  }
+}

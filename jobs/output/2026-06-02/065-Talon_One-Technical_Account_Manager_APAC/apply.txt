@@ -1,0 +1,13 @@
+Apply at: https://to.indeed.com/aagp2rycs7nl
+
+Company: Talon.One
+Role: Technical Account Manager, APAC
+Location: Melbourne VIC (Remote)
+Fit Score: 65/100
+Posted: April 22, 2026
+
+Notes:
+- API integration is a gap — research REST APIs / Postman basics before interview
+- Remote-first role with excellent benefits (30 days leave, AUD 1,600 learning budget, WeWork access)
+- Mention salary expectation: AUD 110k minimum in application
+- Lean into supply chain system integrations at WiseTech/Containerchain as the bridge
