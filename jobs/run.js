@@ -3,11 +3,17 @@
  * Job Search Automation — Main Orchestrator
  *
  * Usage:
- *   node run.js                         # Use built-in profile
- *   node run.js --resume ./my-cv.pdf    # Parse your own PDF/DOCX
+ *   node run.js                              # Search + score + generate docs
+ *   node run.js --resume ./my-cv.pdf        # Use your own PDF/DOCX as base
+ *   node run.js --apply                     # Gated apply after generating docs
+ *   node run.js --resume cv.pdf --apply     # Full pipeline with your resume
  *
- * Required env var:
+ * Required env vars:
  *   ANTHROPIC_API_KEY=sk-ant-...
+ *
+ * For --apply mode, also set:
+ *   INDEED_EMAIL=you@example.com
+ *   INDEED_PASSWORD=yourpassword
  *
  * Output:
  *   ./output/YYYY-MM-DD/
@@ -26,6 +32,8 @@ const { scrapeJobListings, getJobDetails } = require('./seek-scraper');
 const { scoreJob } = require('./job-scorer');
 const { tailorResume, generateCoverLetter } = require('./resume-tailor');
 const { parseResume, profileToText } = require('./resume-parser');
+const { reviewAndApprove } = require('./apply-reviewer');
+const { applyToJobs } = require('./indeed-applier');
 const config = require('./config');
 const profile = require('./profile.json');
 
@@ -49,8 +57,11 @@ function safeName(job) {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const idx = args.indexOf('--resume');
-  return idx !== -1 && args[idx + 1] ? args[idx + 1] : null;
+  const resumeIdx = args.indexOf('--resume');
+  return {
+    resumePath: resumeIdx !== -1 && args[resumeIdx + 1] ? args[resumeIdx + 1] : null,
+    autoApply: args.includes('--apply'),
+  };
 }
 
 // ─── Main ───────────────────────────────────────────────────────────────────
@@ -63,8 +74,9 @@ async function main() {
   }
 
   // ── Step 0: Load base resume ─────────────────────────────────────────────
-  const resumeArg = parseArgs();
+  const { resumePath: resumeArg, autoApply } = parseArgs();
   let baseResume;
+  let resumePdfPath = null;
 
   if (resumeArg) {
     const absPath = path.resolve(resumeArg);
@@ -74,9 +86,17 @@ async function main() {
     }
     log(`\nParsing resume: ${absPath}`);
     baseResume = await parseResume(absPath);
+    if (absPath.endsWith('.pdf')) resumePdfPath = absPath;
   } else {
     log('\nNo --resume flag provided. Using built-in profile as base resume.');
     baseResume = profileToText(profile);
+  }
+
+  if (autoApply) {
+    if (!process.env.INDEED_EMAIL || !process.env.INDEED_PASSWORD) {
+      console.error('\nERROR: --apply mode requires INDEED_EMAIL and INDEED_PASSWORD env vars.');
+      process.exit(1);
+    }
   }
 
   // ── Step 1: Search Seek ──────────────────────────────────────────────────
@@ -206,6 +226,36 @@ async function main() {
     fs.writeFileSync(path.join(dir, 'apply.txt'), `Apply at: ${job.url}`);
 
     log(`    Saved to: ${dir}`);
+  }
+
+  // ── Step 6: Gated auto-apply ─────────────────────────────────────────────
+  if (autoApply && topJobs.length > 0) {
+    banner('Step 6 — Apply Review');
+    const approved = await reviewAndApprove(topJobs);
+
+    if (approved.length > 0) {
+      banner(`Submitting ${approved.length} Application(s)`);
+      const results = await applyToJobs(approved, profile, resumePdfPath, outputDir);
+
+      // Append apply results to summary
+      summary.applications = results;
+      fs.writeFileSync(
+        path.join(outputDir, 'job-search-summary.json'),
+        JSON.stringify(summary, null, 2)
+      );
+
+      log('\n  Application results:');
+      results.forEach((r) => {
+        const icon = r.status === 'submitted' ? '✓'
+          : r.status === 'external' ? '⇒'
+          : r.status === 'already_applied' ? '↺'
+          : '✗';
+        log(`    ${icon} ${r.status.padEnd(16)} ${r.title} @ ${r.company}`);
+        if (r.notes) log(`                       ${r.notes}`);
+      });
+    }
+  } else if (autoApply) {
+    log('\n  No jobs above threshold — nothing to apply to.');
   }
 
   // ── Done ─────────────────────────────────────────────────────────────────

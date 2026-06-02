@@ -23,16 +23,31 @@ npx playwright install chromium
 export ANTHROPIC_API_KEY=sk-ant-...
 ```
 
-**Without a resume file** (uses the built-in profile):
+### Search + generate tailored docs only (semi-auto)
+
 ```bash
-node run.js
+node run.js                              # uses built-in profile
+node run.js --resume /path/to/cv.pdf    # parses your own PDF or DOCX
 ```
 
-**With your own PDF or DOCX:**
+### Search + generate + gated auto-apply
+
 ```bash
-node run.js --resume /path/to/your-resume.pdf
-node run.js --resume /path/to/your-resume.docx
+export INDEED_EMAIL=you@example.com
+export INDEED_PASSWORD=yourpassword
+
+node run.js --apply
+node run.js --resume /path/to/cv.pdf --apply
 ```
+
+In `--apply` mode the tool will:
+1. Run the full search and score pipeline
+2. Show you the top matches in a review table
+3. Ask **"Apply to: [A]ll / [S]elect / [N]o"** before touching any form
+4. Open a visible browser window, login to Indeed, and submit each approved application
+5. Log the result (submitted / external ATS / already applied / failed) for each job
+
+> **External ATS jobs** (Greenhouse, Workday, Lever etc.) cannot be auto-filled — the tool will flag them and give you the direct URL to apply manually.
 
 ---
 
