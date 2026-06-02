@@ -43,6 +43,7 @@
               "item/aura_name": "@triggerBody()?['InvoiceNumber']",
               "item/aura_vendorname": "@triggerBody()?['VendorName']",
               "item/aura_totalamount": "@triggerBody()?['Amount']",
+              "item/aura_datereceived": "@triggerBody()?['DateIssued']",
               "item/aura_status": 1
             }
           }
@@ -58,6 +59,20 @@
             "body": {
               "message": "Invoice successfully received and stored in Dataverse.",
               "invoiceId": "@outputs('Create_Invoice_Record')?['body/aura_invoiceid']"
+            }
+          }
+        },
+        "Response_on_Failure": {
+          "runAfter": {
+            "Create_Invoice_Record": ["Failed", "TimedOut"]
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 500,
+            "body": {
+              "message": "Failed to save invoice record to Dataverse.",
+              "error": "@actions('Create_Invoice_Record')?['error']"
             }
           }
         }
