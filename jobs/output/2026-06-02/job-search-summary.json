@@ -1,0 +1,210 @@
+{
+  "searchDate": "2026-06-02T03:00:00.000Z",
+  "config": {
+    "roles": [
+      "Implementation Consultant",
+      "Customer Success Manager",
+      "Technical Account Manager"
+    ],
+    "location": "Melbourne VIC",
+    "source": "Indeed (via MCP)",
+    "dateRange": 30
+  },
+  "totalFound": 30,
+  "evaluated": 9,
+  "aboveThreshold": 5,
+  "scoreThreshold": 65,
+  "jobs": [
+    {
+      "id": "JOBSEARCH_85",
+      "title": "Customer Success Manager, Onboarding & Implementation",
+      "company": "buildXACT",
+      "location": "Melbourne VIC (Hybrid/Remote Flex)",
+      "salary": null,
+      "fitScore": 82,
+      "scoreHeadline": "Strong match — SaaS onboarding, implementation, and discovery skills align precisely with the role; construction/SMB context is a minor gap offset by CargoWise implementation depth.",
+      "scoreReasons": [
+        "WiseTech Global CargoWise onboarding and implementation directly mirrors the role's core deliverable",
+        "Discovery sessions, requirements gathering, and go-live roadmap experience map precisely to job requirements",
+        "Training delivery, user adoption strategies, and workflow design all listed as explicit job needs",
+        "Cross-functional coordination with Sales, Product, and Support matches the team model"
+      ],
+      "scoreGaps": [
+        "No direct construction/trades industry experience (role mentions it as a bonus, not required)",
+        "AI-assisted CS tooling not mentioned in profile"
+      ],
+      "salaryFit": "likely",
+      "url": "https://to.indeed.com/aatsbsmr62j2",
+      "searchRole": "Customer Success Manager"
+    },
+    {
+      "id": "JOBSEARCH_88",
+      "title": "Senior Customer Success Manager",
+      "company": "Mentorloop",
+      "location": "Melbourne VIC",
+      "salary": "AUD 120,000 – 150,000/year",
+      "fitScore": 78,
+      "scoreHeadline": "Very strong profile-to-role alignment; B2B SaaS CSM experience and onboarding ownership match well, and salary exceeds the minimum requirement.",
+      "scoreReasons": [
+        "3+ years SaaS experience with enterprise customer onboarding and retention",
+        "Stakeholder relations, escalation handling, and QBR-style engagement all present in profile",
+        "Upsell/cross-sell and churn reduction responsibilities align with account management background",
+        "Salary band (AUD 120k–150k) comfortably meets the 110k minimum"
+      ],
+      "scoreGaps": [
+        "Mentoring platform is a new industry vertical — no direct precedent in profile",
+        "No explicit mention of mentoring junior CSMs in profile (though management breadth implied)"
+      ],
+      "salaryFit": "above",
+      "url": "https://to.indeed.com/aajthh6l7vn6",
+      "searchRole": "Customer Success Manager"
+    },
+    {
+      "id": "JOBSEARCH_83",
+      "title": "Customer Success Manager (Enterprise)",
+      "company": "Heidi",
+      "location": "Melbourne VIC",
+      "salary": null,
+      "fitScore": 72,
+      "scoreHeadline": "Good enterprise CSM fit — multi-site rollout, change management, and stakeholder navigation align well; healthcare domain is a gap but the role explicitly calls it a bonus.",
+      "scoreReasons": [
+        "Enterprise software implementation and multi-stakeholder rollout experience from WiseTech Global",
+        "Change management, training delivery, and user adoption skills directly referenced in JD",
+        "Cross-functional coordination and escalation handling match the orchestration requirements",
+        "Global logistics SaaS background demonstrates enterprise-scale execution"
+      ],
+      "scoreGaps": [
+        "No healthcare / clinical workflow experience",
+        "Role requires 5+ years SaaS CSM and 3+ years explicit enterprise accounts — profile history is strong but titles don't perfectly match CSM nomenclature",
+        "Pre-sales / demo experience not mentioned in profile"
+      ],
+      "salaryFit": "likely",
+      "url": "https://to.indeed.com/aazl9vjcfb8k",
+      "searchRole": "Customer Success Manager"
+    },
+    {
+      "id": "JOBSEARCH_102",
+      "title": "SAP Customer Success Manager – Melbourne",
+      "company": "Dyflex Solutions",
+      "location": "Melbourne VIC",
+      "salary": null,
+      "fitScore": 68,
+      "scoreHeadline": "Solid CSM and account management fit; SAP-specific knowledge is a gap but the role prioritises enterprise software CSM skills which the profile demonstrates well.",
+      "scoreReasons": [
+        "Post-implementation CSM responsibilities match profile exactly",
+        "Account strategy, health metrics monitoring, and renewal/upsell coordination all present",
+        "Stakeholder relationship management and trusted advisor positioning align with WiseTech and Containerchain roles",
+        "VIC-based requirement is met"
+      ],
+      "scoreGaps": [
+        "No direct SAP / S/4HANA experience — role prefers SAP knowledge",
+        "No tertiary qualification in a technical or business field (holds Diploma)"
+      ],
+      "salaryFit": "likely",
+      "url": "https://to.indeed.com/aa4pmwwxpc4w",
+      "searchRole": "Customer Success Manager"
+    },
+    {
+      "id": "JOBSEARCH_95",
+      "title": "Technical Account Manager, APAC",
+      "company": "Talon.One",
+      "location": "Melbourne VIC (Remote)",
+      "salary": null,
+      "fitScore": 65,
+      "scoreHeadline": "Reasonable fit on consulting, onboarding design, and customer focus; API integration experience is a gap but the technical consulting and supply chain integration background provides a bridge.",
+      "scoreReasons": [
+        "Technical consulting and configuration skills align with the TAM ownership model",
+        "Customer onboarding design, escalation handling, and cross-functional collaboration all match",
+        "Supply chain software integration background (CargoWise/Containerchain) demonstrates integration context",
+        "Remote-friendly role with strong benefits package suits the profile"
+      ],
+      "scoreGaps": [
+        "No explicit API integration or REST/SOAP experience listed in profile",
+        "Role asks for 2+ years TAM experience — closest is Technical Consulting at WiseTech"
+      ],
+      "salaryFit": "likely",
+      "url": "https://to.indeed.com/aagp2rycs7nl",
+      "searchRole": "Technical Account Manager"
+    },
+    {
+      "id": "JOBSEARCH_97",
+      "title": "Technical Customer Success Manager",
+      "company": "Triskele Labs",
+      "location": "Melbourne VIC (Hybrid)",
+      "salary": "Up to AUD 120,000",
+      "fitScore": 45,
+      "scoreHeadline": "Cybersecurity SOC domain is a significant mismatch — the CSM skills are present but the role requires deep security/infrastructure technical knowledge.",
+      "scoreReasons": [
+        "Customer relationship management and quarterly review structure align",
+        "Communication and presentation skills are strong"
+      ],
+      "scoreGaps": [
+        "No cybersecurity, SOC, or security tooling experience",
+        "Role requires IT/network/infrastructure foundation not present in profile"
+      ],
+      "salaryFit": "above",
+      "url": "https://to.indeed.com/aaylvqrttvm6",
+      "searchRole": "Technical Account Manager"
+    },
+    {
+      "id": "JOBSEARCH_73",
+      "title": "Implementation Consultant",
+      "company": "Infios",
+      "location": "Melbourne VIC",
+      "salary": null,
+      "fitScore": 42,
+      "scoreHeadline": "Supply chain industry aligns well but the role is fundamentally a developer/technical WMS role requiring Java, SQL, and Linux skills not present in the profile.",
+      "scoreReasons": [
+        "Supply chain / WMS industry knowledge from WiseTech Global",
+        "Client communication and troubleshooting mindset present"
+      ],
+      "scoreGaps": [
+        "No Java, Python, C#, or .NET development experience",
+        "No Oracle/SQL database development experience",
+        "No WMS platform expertise (Körber, Manhattan, Blue Yonder, etc.)"
+      ],
+      "salaryFit": "unknown",
+      "url": "https://to.indeed.com/aa7m2p2s6xm6",
+      "searchRole": "Implementation Consultant"
+    },
+    {
+      "id": "JOBSEARCH_92",
+      "title": "Customer Success Manager",
+      "company": "readytech1",
+      "location": "Melbourne VIC",
+      "salary": null,
+      "fitScore": 40,
+      "scoreHeadline": "HR tech domain is a significant mismatch; role requires HR/HRIS system experience and HR generalist background not present in the profile.",
+      "scoreReasons": [
+        "CSM, relationship management, and problem-solving skills are present"
+      ],
+      "scoreGaps": [
+        "No HR or HRIS system experience",
+        "Role requires 3+ years in HR/People & Culture — completely different domain"
+      ],
+      "salaryFit": "unknown",
+      "url": "https://to.indeed.com/aa6gyf9vnql7",
+      "searchRole": "Customer Success Manager"
+    },
+    {
+      "id": "JOBSEARCH_81",
+      "title": "Services Technical Consultant",
+      "company": "Dayforce",
+      "location": "Melbourne VIC",
+      "salary": null,
+      "fitScore": 30,
+      "scoreHeadline": "Developer/payroll systems role requiring Oracle PL/SQL, Oracle Forms, and software development experience not present in the profile.",
+      "scoreReasons": [
+        "Client communication and project management mindset broadly aligns"
+      ],
+      "scoreGaps": [
+        "No Oracle PL/SQL / Oracle Forms development experience",
+        "No payroll or HCM systems background",
+        "Role is fundamentally a software developer consulting role"
+      ],
+      "salaryFit": "unknown",
+      "url": "https://to.indeed.com/aa7v279y8xnz",
+      "searchRole": "Implementation Consultant"
+    }
+  ]
+}

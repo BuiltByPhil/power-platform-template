@@ -1,0 +1,64 @@
+{
+  "name": "Phil",
+  "location": "Melbourne, VIC, Australia",
+  "willingToRelocate": false,
+  "minSalary": 110000,
+  "currency": "AUD",
+  "workPattern": "Monday to Friday, 8-hour shift",
+
+  "experience": [
+    {
+      "title": "Product Specialist",
+      "company": "WiseTech Global",
+      "period": "July 2023 – Present",
+      "industry": "SaaS / Logistics Technology",
+      "notes": "Global logistics SaaS leader; CargoWise platform"
+    },
+    {
+      "title": "Business Relationship Manager",
+      "company": "Containerchain",
+      "period": "April 2019",
+      "industry": "Supply Chain Technology"
+    },
+    {
+      "title": "Key Account Manager",
+      "company": "Stolt-Nielsen Limited",
+      "period": "April 2014",
+      "industry": "Shipping / Logistics"
+    }
+  ],
+
+  "education": [
+    {
+      "qualification": "Diploma",
+      "institution": "Victoria University"
+    }
+  ],
+
+  "skills": [
+    "Customer Onboarding & Implementation",
+    "Agile",
+    "CRM & PSA Tools",
+    "JIRA",
+    "Communication",
+    "Cross-Functional Coordination",
+    "Technical Consulting",
+    "Technical Configuration",
+    "Microsoft Office",
+    "Requirements Gathering",
+    "Stakeholder Relations",
+    "Timeline Management",
+    "Salesforce",
+    "Discovery Sessions",
+    "Documentation Development",
+    "Escalation Handling",
+    "Project Management",
+    "User Adoption Strategies",
+    "Software Configuration",
+    "Confluence",
+    "Training Delivery & Change Mgmt",
+    "Group & 1:1 Training",
+    "Data Analysis",
+    "Workflow Design"
+  ]
+}
