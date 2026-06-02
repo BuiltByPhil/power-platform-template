@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "connectionParameters": {
+      "api_key": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "API Key",
+          "description": "The x-api-key value set in your API_KEY environment variable when deploying the connector API.",
+          "tooltip": "Your Seek Connector API key",
+          "constraints": {
+            "required": "true"
+          }
+        }
+      }
+    },
+    "iconBrandColor": "#0D3880",
+    "capabilities": [],
+    "publisher": "BuiltByPhil",
+    "stackOwner": "BuiltByPhil"
+  }
+}
